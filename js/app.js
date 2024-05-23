@@ -1,32 +1,19 @@
-function botaoStatusMonopoly() {
-    let botao = document.getElementById('botaoMonopoly');
-    if (botao.classList.contains('dashboard__item__button--return')) {
-        botao.classList.remove('dashboard__item__button--return');
-        document.getElementById('botaoMonopoly').textContent = ('Alugar');
-        } else {
-            botao.classList.add('dashboard__item__button--return');
-            document.getElementById('botaoMonopoly').textContent = ('Devolver');
-        }
-}
+function alterarStatus(id) {
+    let botaoClicado = document.getElementById(`game-${id}`);
+    let imagem = botaoClicado.querySelector('.dashboard__item__img');
+    let botao = botaoClicado.querySelector('.dashboard__item__button');
+    let jogo = botaoClicado.querySelector('.dashboard__item__name');
+    let mensagem = document.querySelector ('.paragraph');
 
-function botaoStatusTicketToRide() {
-    let botao = document.getElementById('botaoTicketToRide');
-    if (botao.classList.contains('dashboard__item__button--return')) {
+    if (imagem.classList.contains('dashboard__item__img--rented')) {
+        imagem.classList.remove('dashboard__item__img--rented');
         botao.classList.remove('dashboard__item__button--return');
-        document.getElementById('botaoTicketToRide').textContent = ('Alugar');
-        } else {
-            botao.classList.add('dashboard__item__button--return');
-            document.getElementById('botaoTicketToRide').textContent = ('Devolver');
-        }
-}
-
-function botaoStatusTakenoko() {
-    let botao = document.getElementById('botaoTakenoko');
-    if (botao.classList.contains('dashboard__item__button--return')) {
-        botao.classList.remove('dashboard__item__button--return');
-        document.getElementById('botaoTakenoko').textContent = ('Alugar');
-        } else {
-            botao.classList.add('dashboard__item__button--return');
-            document.getElementById('botaoTakenoko').textContent = ('Devolver');
-        }
+        botao.textContent = 'Alugar';
+        mensagem.textContent = (`Jogo ${jogo.textContent} devolvido, obrigado!`);
+    } else {
+        imagem.classList.add('dashboard__item__img--rented');
+        botao.classList.add('dashboard__item__button--return');
+        botao.textContent = 'Devolver';
+        mensagem.textContent = (`Jogo ${jogo.textContent} alugado, boa jogatina! :)`);
+    }
 }
